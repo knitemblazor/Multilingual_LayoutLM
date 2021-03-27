@@ -1,13 +1,10 @@
-import requests
-import numpy as np
-import io
 import pytesseract
 from PIL import Image
 from pdf2image import convert_from_path
 from layoutlm.modeling.tokenization_bert import BertTokenizer
 
 
-class AzureOcr:
+class TesserOcr:
 
     def __init__(self, args):
         self.args = args
@@ -51,23 +48,12 @@ class AzureOcr:
             bbox_part = self.splitter(split_indices[split_index], split_indices[split_index + 1], bbox)
             actual_bbox_part = self.splitter(split_indices[split_index], split_indices[split_index + 1], actual_bbox)
             text_part = self.splitter(split_indices[split_index], split_indices[split_index + 1], text)
-            # print(text_part)
-            # print(bbox_part)
-            # print(actual_bbox_part)
             conf_part = self.splitter(split_indices[split_index], split_indices[split_index + 1], conf)
             inter.append([guid_index,bbox_part,actual_bbox_part,text_part,conf_part,file_name,page_WH])
         return inter
 
-    @staticmethod
-    def get_image_text_data(im_bytes):
-        res = requests.post(url='http://104.41.151.78:5010/vision/v3.2-preview.2/read/syncAnalyze',
-                                data=im_bytes,
-                                headers={'Content-Type': 'application/octet-stream'})
-        return res
-
     def loader(self):
         try:
-            # self.images = convert_from_path(self.pdf_path,size=(1100,None), dpi=300, grayscale=True)
             self.images = convert_from_path(self.pdf_path,dpi=300)
             processed = []
             for img in self.images:
@@ -87,24 +73,8 @@ class AzureOcr:
         page_formatted = []
         for ind, img in enumerate(self.images):
             img = img.convert("RGB")
-            b = io.BytesIO()
-            img.save(b, 'jpeg')
-            im_bytes = b.getvalue()
-            res = self.get_image_text_data(im_bytes)
-            key = ""
-            print("azure response status:", res.status_code)
-            if res.status_code == 200:
-                status = True
-                page = res.json()['analyzeResult']['readResults'][0]
-                angle = page['angle']
-                width = page['width']
-                height = page['height']
-                if -20 < angle < 20:
-                    key = "same"
-                    for entry in self.resolver(ind, img, width, height, "same"):
-                        page_formatted.append(entry)
-            else:
-                pass
+            for entry in self.resolver(ind, img, width, height, "same"):
+                page_formatted.append(entry)
         return page_formatted, key, status
 
 
