@@ -1,7 +1,7 @@
 from __future__ import absolute_import, division, print_function
 import logging
 import random
-from azure_ocr_2 import AzureOcr
+from tesser import TesserOcr
 import numpy as np
 import torch
 from torch.nn import CrossEntropyLoss
@@ -11,7 +11,7 @@ from layoutlm.modeling.modeling_bert import  BertForTokenClassification
 from layoutlm.modeling.configuration_bert import BertConfig
 from layoutlm.modeling.tokenization_bert import BertTokenizer
 from layoutlm.data.data_loader import read_examples_from_stream
-from layoutlm import LayoutlmConfig, LayoutlmForTokenClassification, PayrollDataset
+from layoutlm import LayoutlmConfig, LayoutlmForTokenClassification, DatasetLoader
 from layoutlm.modeling.file_utils import WEIGHTS_NAME
 import re
 
@@ -94,7 +94,7 @@ def combine(fin_S, fin_oth):
 
 
 def evaluate(args, model, tokenizer, labels, pad_token_label_id, mode, prefix=""):
-    obj_azure = AzureOcr(args)
+    obj_azure = TesserOcr(args)
     file_prefix = args.pdf_name.split("/")[-1]
     processed_list, _, _ = obj_azure.loader()
     tags = ["S-k_", "B-k_", "I-k_", "E-k_"]
@@ -103,7 +103,7 @@ def evaluate(args, model, tokenizer, labels, pad_token_label_id, mode, prefix=""
     for page in processed_list:
         examples, words, actual_bboxes, bboxes, file_name, page_size = read_examples_from_stream(page, mode)
         img_id = file_prefix + "_" + file_name
-        eval_dataset = PayrollDataset(args, examples, tokenizer, labels, pad_token_label_id, mode=mode)
+        eval_dataset = DatasetLoader(args, examples, tokenizer, labels, pad_token_label_id, mode=mode)
         eval_sampler = SequentialSampler(eval_dataset)
         eval_dataloader = DataLoader(
             eval_dataset,

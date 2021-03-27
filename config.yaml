@@ -39,12 +39,12 @@ debugging:
     server_port: ""
 
 path_info:
-    output_dir: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest"
+    output_dir: "model"
     data_dir: ""
-    model_name_or_path: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest"
-    labels: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest/labels.txt"
+    model_name_or_path: "model"
+    labels: "model/labels.txt"
     pdf_path: ""
     config_name: ""
     tokenizer_name: ""
     cache_dir: ""
-    prediction_file: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest/pred.txt"
+    prediction_file: "model/pred.txt"

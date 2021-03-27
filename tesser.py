@@ -73,8 +73,8 @@ class TesserOcr:
         page_formatted = []
         for ind, img in enumerate(self.images):
             img = img.convert("RGB")
-            for entry in self.resolver(ind, img, width, height, "same"):
+            for entry in self.resolver(ind, img, img.width, img.height, "same"):
                 page_formatted.append(entry)
-        return page_formatted, key, status
+        return page_formatted, "",""
 
 

@@ -3,7 +3,7 @@ import yaml
 from objectify import Struct
 
 
-class CheckboxParser:
+class Parser:
     def __init__(self, pdf_path, pdf_name):
         self.config_path = "config.yaml"
         self.pdf_path = pdf_path
@@ -19,7 +19,8 @@ class CheckboxParser:
         args.pdf_path = self.pdf_path
         args.pdf_name = self.pdf_name
         df_processed = predict(args)
-        # df_processed.to_csv("df_trial.csv", index=False)
         return df_processed
 
-
+img_path = "/home/nitheesh/Downloads/image/front/EHE2.png"
+obj = Parser(img_path,"")
+obj.checkbox_parser()
