@@ -1,0 +1,50 @@
+model_specific:
+    seed: 12
+    n_gpu: 1
+    per_gpu_train_batch_size: 8
+    local_rank: -1
+    train_batch_size: 8
+    max_steps: -1
+    gradient_accumulation_steps: 1
+    learning_rate: 5e-5
+    adam_epsilon: 1e-8
+    fp16: False
+    num_train_epochs: 1
+    weight_decay: 0.0
+    warmup_steps: 0
+    fp16_opt_level: "01"
+    model_type: "layoutlm"
+    max_grad_norm: 1.0
+    logging_steps:
+    save_steps: -1
+    per_gpu_eval_batch_size: 3
+    eval_batch_size: 3
+    device: "cpu"
+    max_seq_length: 512
+
+running_args:
+    do_train: False
+    do_eval: True
+    do_test: False
+    do_predict: True
+    evaluate_during_training: False
+    do_lower_case: true
+    overwrite_output_dir: False
+    overwrite_cache: False
+    no_cuda: False
+    eval_all_checkpoints: False
+
+debugging:
+    server_ip: ""
+    server_port: ""
+
+path_info:
+    output_dir: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest"
+    data_dir: ""
+    model_name_or_path: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest"
+    labels: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest/labels.txt"
+    pdf_path: ""
+    config_name: ""
+    tokenizer_name: ""
+    cache_dir: ""
+    prediction_file: "/home/nitheesh/Documents/projects_2/table_detection_cum_parsing/model_latest/pred.txt"
