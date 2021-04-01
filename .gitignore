@@ -1,2 +1,3 @@
 # ignore model path
 model
+layoutlm/modeling/__pycache__/
