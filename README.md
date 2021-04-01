@@ -9,10 +9,16 @@ https://drive.google.com/drive/folders/1t5Ktz94YTSrE_JHdrfiPc4Moi-K4GxHz?usp=sha
 
 ## Training flow
 Training flow is in the train directory \
-Do alter and go through the parameters in the config.yml inside train directory to suit your requirements. \
+Do alter and go through the parameters in the config.yml inside train directory to suit your requirements. 
 
 ## Steps
 1. clone the repository
-2. 
+2. run pip install -r requirements.txt
+3.  **To train** go to train folder and run python train.py after making changes in the config file \
+   you should also download the pretrained model from the given link and place it in the folder models \
+   similarly you should prepare the data in the format as in folder annotated_adhaar_data \
+4. **To predict** alter the config file outside the train folder and ***run python parser.py*** with the image path \
+   after putting it in the parser.py file  
+    
 
 
