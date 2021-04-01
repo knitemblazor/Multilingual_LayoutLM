@@ -1,0 +1,50 @@
+model_specific:
+    seed: 12
+    n_gpu: 1
+    per_gpu_train_batch_size: 2
+    local_rank: -1
+    train_batch_size: 2
+    max_steps: -1
+    gradient_accumulation_steps: 1
+    learning_rate: 5e-5
+    adam_epsilon: 1e-8
+    fp16: False
+    num_train_epochs: 1
+    weight_decay: 0.0
+    warmup_steps: 0
+    fp16_opt_level: "01"
+    model_type: "layoutlm"
+    max_grad_norm: 1.0
+    logging_steps: 0
+    save_steps: -1
+    per_gpu_eval_batch_size: 1
+    eval_batch_size: 1
+    device: "cpu"
+    max_seq_length: 512
+
+running_args:
+    do_train: Train
+    do_eval: False
+    do_test: False
+    do_predict: False
+    evaluate_during_training: False
+    do_lower_case: true
+    overwrite_output_dir: True
+    overwrite_cache: False
+    no_cuda: False
+    eval_all_checkpoints: False
+
+debugging:
+    server_ip: ""
+    server_port: ""
+
+path_info:
+    output_dir: "../output"
+    data_dir: "../annotated_adhaar_data"
+    model_name_or_path: "../model"
+    labels: "../annotated_adhaar_data/train_label.txt"
+    pdf_path: ""
+    config_name: ""
+    tokenizer_name: ""
+    cache_dir: ""
+    prediction_file: "model/pred.txt"

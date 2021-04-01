@@ -12,7 +12,6 @@ from layoutlm.modeling.configuration_bert import BertConfig
 from layoutlm.modeling.tokenization_bert import BertTokenizer
 from layoutlm.data.data_loader import read_examples_from_stream
 from layoutlm import LayoutlmConfig, LayoutlmForTokenClassification, DatasetLoader
-from layoutlm.modeling.file_utils import WEIGHTS_NAME
 import re
 
 logger = logging.getLogger(__name__)
