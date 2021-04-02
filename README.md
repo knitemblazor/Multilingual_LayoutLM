@@ -1,7 +1,7 @@
 # Multilingual_LayoutLM 
 
 This project has been derived from microsoft's LayoutLM project with dependency for transformers removed.
-It also includes support for 140 languages. I will be posting the training flow soon 
+It also includes support for 140 languages.This is a completed project  for training and prediction  of multilingual documents as there are limitations on labelled dataset kindly prepare data for your respective languages.I have currently tested it for hindi, malayalam, english combinations. I have released the training flow and model accordingly for these languages  that have been trained on adhaar dataset
 
 ## Model Link
 path and config file for multilingual bert model for producing embeddings  \
