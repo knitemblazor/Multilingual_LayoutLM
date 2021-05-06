@@ -7,6 +7,10 @@ It also includes support for 140 languages.This is a completed project  for trai
 path and config file for multilingual bert model for producing embeddings  \
 https://drive.google.com/drive/folders/1t5Ktz94YTSrE_JHdrfiPc4Moi-K4GxHz?usp=sharing
 
+## pretraining flow
+To do
+
+
 ## Training flow
 Training flow is in the train directory \
 Do alter and go through the parameters in the config.yml inside train directory to suit your requirements. 
